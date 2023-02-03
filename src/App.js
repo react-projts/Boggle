@@ -1,31 +1,47 @@
 import React, { useState } from "react";
-import { createContext } from "react";
+import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./components/GlobalStyle";
 
 import Navbar from "./components/Navbar";
 import Routes from "./components/Routes";
 import Footer from "./components/Footer";
 
-export const ThemeContext = createContext(null);
-
 const App = () => {
-  const [theme, setTheme] = useState("light");
+  const darkTheme = {
+    id: "dark",
+    background: "grey",
+  };
+
+  const lightTheme = {
+    id: "light",
+    background: "white",
+  };
+
+  const [theme, setTheme] = useState(lightTheme);
 
   const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    if (theme.id === "dark") {
+      setTheme({
+        ...lightTheme,
+      });
+    } else {
+      setTheme({
+        ...darkTheme,
+      });
+    }
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div id={theme}>
+    <ThemeProvider theme={theme}>
+      <div>
         <GlobalStyle />
         <div>
-          <Navbar />
+          <Navbar toggleTheme={toggleTheme} />
           <Routes />
           <Footer />
         </div>
       </div>
-    </ThemeContext.Provider>
+    </ThemeProvider>
   );
 };
 

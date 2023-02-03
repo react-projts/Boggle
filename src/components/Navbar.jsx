@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ toggleTheme }) => {
   return (
     <StyledNav>
       <div>
@@ -10,7 +10,7 @@ const Navbar = () => {
           <HomeButton>Boggle 🔎</HomeButton>
         </Link>
       </div>
-      <button>shift</button>
+      <button onClick={toggleTheme}>shift</button>
     </StyledNav>
   );
 };
