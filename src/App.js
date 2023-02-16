@@ -3,18 +3,20 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./components/GlobalStyle";
 
 import Navbar from "./components/Navbar";
-import Routes from "./components/Routes";
+import PageRouter from "./components/PageRouter";
 import Footer from "./components/Footer";
 
 const App = () => {
   const darkTheme = {
     id: "dark",
-    background: "grey",
+    background: "#000B1B",
+    color: "white",
   };
 
   const lightTheme = {
     id: "light",
-    background: "white",
+    background: "rgb(243 244 246)",
+    color: "black",
   };
 
   const [theme, setTheme] = useState(lightTheme);
@@ -36,8 +38,8 @@ const App = () => {
       <div>
         <GlobalStyle />
         <div>
-          <Navbar toggleTheme={toggleTheme} />
-          <Routes />
+          <Navbar toggleTheme={toggleTheme} theme={theme} />
+          <PageRouter />
           <Footer />
         </div>
       </div>
