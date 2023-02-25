@@ -1,7 +1,6 @@
 ## Extensions
 
-React snippets
-rafce
+React snippets --> used by me: rafce
 
 ## Dependencies
 
@@ -10,6 +9,11 @@ npm i react-player
 npm i react-loader-spinner
 npm i use-debounce
 npm install styled-components
+
+## Things learned
+
+- How to use the hook useContext to manage state and to change the app theme.
+- Routing pages
 
 ## Tools
 
