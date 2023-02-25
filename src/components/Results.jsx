@@ -12,8 +12,14 @@ const Results = () => {
   const location = useLocation();
 
   useEffect(() => {
-    getResults();
-  }, []);
+    if (searchTerm) {
+      if (location.pathname === "/images") {
+        getResults(searchTerm, "&searchType=image");
+      } else {
+        getResults(searchTerm, "");
+      }
+    }
+  }, [searchTerm, location.pathname]);
 
   if (isLoading) return <Loading />;
 
@@ -34,7 +40,18 @@ const Results = () => {
         </ItemsWrapper>
       );
     case "/images":
-      return "IMAGES";
+      return (
+        <ImagesWrapper>
+          {results?.items?.map(({ image, contextLink, title }, cacheId) => (
+            <div key={cacheId}>
+              <GridItem href={contextLink} target="_blank" rel="noreferrer">
+                <img src={image?.thumbnailLink} alt="lis images" />
+                <p>{title}</p>
+              </GridItem>
+            </div>
+          ))}
+        </ImagesWrapper>
+      );
     default:
       return "ERROR!";
   }
@@ -44,6 +61,26 @@ const ItemsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+  padding: 10px;
+`;
+
+const ImagesWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 10px;
+`;
+
+const GridItem = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
 `;
 
 const Title = styled.p`

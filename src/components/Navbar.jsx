@@ -12,17 +12,17 @@ const Navbar = ({ toggleTheme, theme }) => {
             <HomeButton>Boggle 🔎</HomeButton>
           </Link>
         </div>
+        <Search />
         <StyledButton onClick={toggleTheme}>
           {theme.id === "light" ? "Dark 🌙" : "Light 💡"}
         </StyledButton>
       </StyledNav>
-      <Search />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 10px;
+  padding: 10px 0px;
 `;
 
 const StyledNav = styled.nav`
@@ -44,12 +44,15 @@ const HomeButton = styled.nav`
   color: ${(props) => (props.theme.id === "light" ? "white" : "black")};
   border-radius: 8px;
   padding: 5px;
+  margin-left: 10px;
 `;
 
 const StyledButton = styled.button`
   border: 2px solid grey;
   border-radius: 17px;
   padding: 5px;
+  margin-right: 10px;
+  height: fit-content;
   background-color: ${(props) =>
     props.theme.id === "light" ? "#000B1B" : "white"};
   color: ${(props) => (props.theme.id === "light" ? "white" : "black")};

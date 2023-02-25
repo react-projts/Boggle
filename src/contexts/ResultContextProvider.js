@@ -7,7 +7,8 @@ const baseUrl = "https://customsearch.googleapis.com/customsearch/v1";
 
 // const url2 = `${baseUrl}?cx=${searchEngineKey}&q${searchTerm}$key${apiKey}`;
 
-const term = "elon musk";
+// const term = "elon musk";
+// const image = "&searchType=image";
 const ResultContext = createContext();
 
 export const ResultContextProvider = ({ children }) => {
@@ -15,11 +16,11 @@ export const ResultContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getResults = async (type) => {
+  const getResults = async (term, type) => {
     setIsLoading(true);
 
     const response = await fetch(
-      `https://customsearch.googleapis.com/customsearch/v1?cx=8353ce6394a784324&q=${term}&key=AIzaSyCyvDD8YQpDE8W7R4DDPPh0-bxhk0uKbQg&searchType=image`,
+      `https://customsearch.googleapis.com/customsearch/v1?cx=8353ce6394a784324&key=AIzaSyCyvDD8YQpDE8W7R4DDPPh0-bxhk0uKbQg&q=${searchTerm}${type}`,
       {
         method: "GET",
         headers: {
